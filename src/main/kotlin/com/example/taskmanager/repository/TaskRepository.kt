@@ -9,5 +9,4 @@ import java.util.UUID
  * Interface for generic CRUD operations on a repository for [Task] class.
  */
 @Repository
-interface TaskRepository : CrudRepository<Task, UUID> {
-}
+interface TaskRepository : CrudRepository<Task, UUID> {}
