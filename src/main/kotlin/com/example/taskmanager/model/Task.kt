@@ -1,16 +1,27 @@
 package com.example.taskmanager.model
 
+import org.hibernate.annotations.GenericGenerator
 import java.util.*
+import javax.persistence.*
 
 /**
  * This class allows to create instance this class.
  * You can add task name, add description and add special tag.
  */
+@Entity
 class Task(
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "UUID")
+    @GenericGenerator(
+        name = "UUID",
+        strategy = "org.hibernate.id.UUIDGenerator"
+    )
     var id: UUID? = null,
     var name: String,
     var description: String,
     var date: Date?,
+    @ManyToOne(fetch = FetchType.LAZY, cascade = [CascadeType.PERSIST, CascadeType.MERGE])
+    @JoinColumn(name = "tag_id")
     var tag: Tag?
 ) {
     /**
@@ -29,5 +40,20 @@ class Task(
         fun date(date: Date) = apply { this.date = date }
         fun tag(tag: Tag) = apply { this.tag = tag }
         fun build() = Task(id, name, description, date, tag)
+    }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as Task
+
+        if (id != other.id) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        return id?.hashCode() ?: 0
     }
 }
