@@ -15,11 +15,4 @@ import java.util.UUID
  */
 @Repository
 interface TagRepository : CrudRepository<Tag, UUID> {
-    /**
-     * Return all instances type [Task], witch refer to specific tag.
-     * @param id must be non-null
-     * @return all entities witch refer to specific tag
-     */
-    @Query("SELECT t.tasks FROM Tag t WHERE t.id = :tag_id")
-    fun findAllTaskByTagId(@Param("tag_id") id: UUID): List<Task>
 }
