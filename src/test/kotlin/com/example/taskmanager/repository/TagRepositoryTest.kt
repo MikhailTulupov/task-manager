@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import java.time.Instant
 import java.util.*
+import java.util.function.Supplier
 
 @SpringBootTest
 class TagRepositoryTest @Autowired constructor(
@@ -34,9 +35,10 @@ class TagRepositoryTest @Autowired constructor(
 
         tagRepository.save(tag)
 
-        val findAllById = tagRepository.findAllTaskByTagId(tag.id!!)
+        val findById = tagRepository.findById(tag.id!!)
+        val optionalTag = findById.orElseGet { Tag.Builder().build() }
 
-        Assertions.assertEquals(3, findAllById.count())
+        Assertions.assertEquals(3, optionalTag.tasks.count())
     }
 
     @Test

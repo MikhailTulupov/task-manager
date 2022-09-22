@@ -19,7 +19,7 @@ class Tag(
     var header: String,
     @OneToMany(
         mappedBy = "tag",
-        fetch = FetchType.LAZY,
+        fetch = FetchType.EAGER,
         cascade = [CascadeType.ALL],
         orphanRemoval = true
     )
