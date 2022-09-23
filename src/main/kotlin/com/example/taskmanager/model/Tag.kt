@@ -20,7 +20,7 @@ class Tag(
     @OneToMany(
         mappedBy = "tag",
         fetch = FetchType.EAGER,
-        cascade = [CascadeType.ALL],
+        cascade = [CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE, CascadeType.DETACH],
         orphanRemoval = true
     )
     var tasks: MutableList<Task> = mutableListOf()

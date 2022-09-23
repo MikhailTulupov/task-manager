@@ -18,7 +18,5 @@ class TaskServiceImpl @Autowired constructor(
 
     override fun add(task: Task): Task = repository.save(task)
 
-    override fun update(task: Task): Task = repository.save(task)
-
     override fun deleteById(id: UUID) = repository.deleteById(id)
 }

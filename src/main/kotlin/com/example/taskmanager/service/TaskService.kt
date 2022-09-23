@@ -24,14 +24,6 @@ interface TaskService {
     fun add(task: Task): Task
 
     /**
-     * Update exist entity.
-     *
-     * @param task must be non-null.
-     * @return the updated entity.
-     */
-    fun update(task: Task): Task
-
-    /**
      * Deletes the entity with the given id.
      *
      * @param id must not be {@literal null}.
