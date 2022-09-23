@@ -16,14 +16,6 @@ interface TagService {
     fun add(tag: Tag): Tag
 
     /**
-     * Update exist entity.
-     *
-     * @param tag must be non-null.
-     * @return the updated entity.
-     */
-    fun update(tag: Tag): Tag
-
-    /**
      * Retrieves an entity by its id.
      *
      * @param id must be non-null

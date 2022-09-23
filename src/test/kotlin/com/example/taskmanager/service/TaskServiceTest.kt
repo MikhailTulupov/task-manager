@@ -55,7 +55,7 @@ class TaskServiceTest @Autowired constructor(
 
         tasks[0].name = "TestTest"
 
-        val update = service.update(tasks[0])
+        val update = service.add(tasks[0])
 
         assertThat(update).isEqualTo(tasks[0])
     }

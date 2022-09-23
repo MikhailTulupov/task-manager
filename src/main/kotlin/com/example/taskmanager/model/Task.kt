@@ -20,9 +20,12 @@ class Task(
     var name: String,
     var description: String,
     var date: Date?,
-    @ManyToOne(fetch = FetchType.LAZY, cascade = [CascadeType.PERSIST, CascadeType.MERGE])
+    @ManyToOne(
+        fetch = FetchType.LAZY,
+        cascade = [CascadeType.PERSIST, CascadeType.DETACH, CascadeType.REFRESH]
+    )
     @JoinColumn(name = "tag_id")
-    var tag: Tag?
+    var tag: Tag? = null
 ) {
     /**
      * This inner class represent builder pattern.
@@ -34,11 +37,11 @@ class Task(
         private var date: Date? = null,
         private var tag: Tag? = null
     ) {
-        fun id(id: UUID) = apply { this.id = null }
+        fun id(id: UUID) = apply { this.id = id }
         fun name(name: String) = apply { this.name = name }
         fun description(description: String) = apply { this.description = description }
         fun date(date: Date) = apply { this.date = date }
-        fun tag(tag: Tag) = apply { this.tag = tag }
+        fun tag(tag: Tag?) = apply { this.tag = tag }
         fun build() = Task(id, name, description, date, tag)
     }
 

@@ -15,8 +15,6 @@ class TagServiceImpl @Autowired constructor(
 ) : TagService {
     override fun add(tag: Tag): Tag = repository.save(tag)
 
-    override fun update(tag: Tag): Tag = repository.save(tag)
-
     override fun findById(id: UUID): Tag {
         val tagOptional = repository.findById(id)
         return tagOptional.orElse(Tag.Builder().build())

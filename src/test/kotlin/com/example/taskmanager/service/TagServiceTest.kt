@@ -47,7 +47,7 @@ class TagServiceTest @Autowired constructor(
 
         tag.header = "MyTag"
 
-        val update = service.update(tag)
+        val update = service.add(tag)
 
         assertThat(update).isEqualTo(tag)
     }
