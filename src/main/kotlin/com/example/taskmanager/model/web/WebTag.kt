@@ -1,15 +1,37 @@
 package com.example.taskmanager.model.web
 
+import io.swagger.v3.oas.annotations.media.ArraySchema
+import io.swagger.v3.oas.annotations.media.Schema
 import java.io.Serializable
 
 /**
  * This class presents canal model for deserialization and serialization
  * [com.example.taskmanager.model.Tag] for next use.
  */
+@Schema
 class WebTag(
+    @Schema(
+        name = "id",
+        title = "Tag identifier",
+        type = "String",
+        format = "uuid"
+    )
     var id: String? = null,
+    @Schema(
+        name = "header",
+        title = "Tag header",
+        type = "String",
+        example = "MyTag"
+    )
     var header: String,
-    var tasks: List<WebTask>
+    @ArraySchema(arraySchema =
+        Schema(
+            name = "tasks",
+            title = "List of tasks",
+            type = "Array"
+        )
+    )
+    var tasks: List<WebTask> = mutableListOf()
 ) : Serializable {
     /**
      * This inner class represent builder pattern.
