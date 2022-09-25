@@ -2,19 +2,52 @@ package com.example.taskmanager.model.web
 
 import com.fasterxml.jackson.annotation.JsonAlias
 import com.fasterxml.jackson.annotation.JsonProperty
+import io.swagger.v3.oas.annotations.media.Schema
 import java.io.Serializable
 
 /**
  * This class presents canal model for deserialization and serialization
  * [com.example.taskmanager.model.Task] for next use.
  */
+@Schema
 class WebTask(
+    @Schema(
+        name = "id",
+        title = "Tag identifier",
+        type = "String",
+        format = "uuid"
+    )
     var id: String? = null,
+    @Schema(
+        name = "name",
+        title = "Name of task",
+        type = "String",
+        example = "Task1"
+    )
     var name: String,
+    @Schema(
+        name = "description",
+        title = "Description task",
+        type = "String",
+        example = "Task description"
+    )
     var description: String,
+    @Schema(
+        name = "date",
+        title = "Date",
+        type = "String",
+        example = "2022-02-22"
+    )
     var date: String,
     @JsonAlias(value = ["tagId"])
     @JsonProperty(value = "tagId")
+    @Schema(
+        name = "tagId",
+        title = "Tag identifier",
+        type = "String",
+        format = "uuid"
+
+    )
     var tag: String? = null
 ) : Serializable {
     /**
